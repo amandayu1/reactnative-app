@@ -1,30 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
-import { StyleSheet, Text, TextInput, View, Button} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 
 export default function App() {
-  const [outputText, setOutputText] = useState("Open up App.js to start working on your app!")
-  return (
-    <View style={styles.container}>
-      <View style={{padding: 30}}>
-      <TextInput placeholder="What's up? Type here." style={{padding: 10, borderColor: "blue", borderWidth:1}}/>
-      <Button title="Hello, bitches"/>
-      
-      </View>
-      
-      <View>
-      <Text></Text>
-      </View>
-      
-    </View> 
+	const [groceryItem, getGroceryItem] = useState("");
+	
+	const itemsInputHandler = groceryItem => {
+		getGroceryItem(groceryItem);
+	};
+	
+   const addGroceryItem = () => {
+     
+	};
+
+	return (
+		<View style={styles.container}>
+			{/*Input Container*/}
+			<View style={styles.inputContainer}>
+				<TextInput
+				   onChangeText={itemsInputHandler}
+					placeholder='Shopping List Items'
+					style={styles.input}
+					value={groceryItem}
+				/> 
+				<Button title="Add" style={styles.button}/>
+         </View>
+			
+			{/*Array of items*/}
+			<View>
+            
+			</View>
+		</View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center', },
-   
+	container: {
+		padding: 50
+	},
+	inputContainer:{
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	input:{
+		width: '70%',
+		borderColor: 'blue',
+		borderWidth: 1,
+		padding: 10
+	}
 });
