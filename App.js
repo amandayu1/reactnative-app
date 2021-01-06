@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 
 export default function App() {
-	const [groceryItem, getGroceryItem] = useState("");
+	const [enteredItem, setGroceryItem] = useState("");
+	const [listItems, setListItems] = useState([]);
 	
-	const itemsInputHandler = groceryItem => {
-		getGroceryItem(groceryItem);
+	const itemsInputHandler = (enteredText) => {
+		setGroceryItem(enteredText);
 	};
 	
-   const addGroceryItem = () => {
-     
+   const addItemToList = () => {
+		setListItems( currentList => [...currentList , enteredItem]);
 	};
 
 	return (
@@ -21,14 +22,18 @@ export default function App() {
 				   onChangeText={itemsInputHandler}
 					placeholder='Shopping List Items'
 					style={styles.input}
-					value={groceryItem}
+					value={enteredItem}
 				/> 
-				<Button title="Add" style={styles.button}/>
+				<Button title="Add" onPress={addItemToList} style={styles.button}/>
          </View>
 			
 			{/*Array of items*/}
 			<View>
-            
+				{listItems.map( item => 
+					<View style={styles.listItem} key={item}><Text>
+						{item}
+					</Text></View>
+				)}
 			</View>
 		</View>
   );
@@ -48,5 +53,11 @@ const styles = StyleSheet.create({
 		borderColor: 'blue',
 		borderWidth: 1,
 		padding: 10
+	},
+	listItem: {
+		padding: 10,
+		backgroundColor: '#ccc',
+		borderColor: 'black',
+		borderWidth: 1
 	}
 });
