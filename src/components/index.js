@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { SignIn, CreateAccount } from '../screens/SignIn';
+import { SignIn, CreateAccount } from '../screens/SignInScreen';
 
 const AuthStack= createStackNavigator();
 
