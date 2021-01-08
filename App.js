@@ -1,63 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+
+import { SignIn, CreateAccount, Profile, Home} from "./src/screens/SignIn";
 
 export default function App() {
-	const [enteredItem, setGroceryItem] = useState("");
-	const [listItems, setListItems] = useState([]);
-	
-	const itemsInputHandler = (enteredText) => {
-		setGroceryItem(enteredText);
-	};
-	
-   const addItemToList = () => {
-		setListItems( currentList => [...currentList , enteredItem]);
-	};
+  const AuthStack = createStackNavigator();
+  const Tabs = createBottomTabNavigator();
 
-	return (
-		<View style={styles.container}>
-			{/*Input Container*/}
-			<View style={styles.inputContainer}>
-				<TextInput
-				   onChangeText={itemsInputHandler}
-					placeholder='Shopping List Items'
-					style={styles.input}
-					value={enteredItem}
-				/> 
-				<Button title="Add" onPress={addItemToList} style={styles.button}/>
-         </View>
-			
-			{/*Array of items*/}
-			<View>
-				{listItems.map( item => 
-					<View style={styles.listItem} key={item}><Text>
-						{item}
-					</Text></View>
-				)}
-			</View>
-		</View>
+  return (
+    <NavigationContainer>
+      <Tabs.Navigator>
+        <Tabs.Screen name="Home" component={Home}/>
+        <Tabs.Screen name="Profile" component={Profile}/>
+      </Tabs.Navigator>
+      {/*
+      <AuthStack.Navigator initialRouteName="SignIn">
+        <AuthStack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{ title: "Sign In" }}
+        />
+        <AuthStack.Screen
+          name="CreateAccount"
+          component={CreateAccount}
+          options={{ title: "Create Account" }}
+        />
+      </AuthStack.Navigator>
+      */}
+  </NavigationContainer> 
   );
 }
 
 const styles = StyleSheet.create({
-	container: {
-		padding: 50
-	},
-	inputContainer:{
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
-	input:{
-		width: '70%',
-		borderColor: 'blue',
-		borderWidth: 1,
-		padding: 10
-	},
-	listItem: {
-		padding: 10,
-		backgroundColor: '#ccc',
-		borderColor: 'black',
-		borderWidth: 1
-	}
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
