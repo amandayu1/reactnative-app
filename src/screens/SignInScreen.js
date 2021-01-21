@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: 'white',
     borderWidth: 1,
-    margin: 5,
+    marginVertical: 10,
   },
   ButtonText:{
     color: "white",
@@ -50,9 +50,8 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '80%',
     alignItems: "center",
-    margin: 5,
     backgroundColor: "white",
-    marginBottom: 10,
+    marginVertical: 10,
   },
   FilledButtonText:{
     color: "black",
@@ -69,8 +68,7 @@ const theme = {
       width: "80%",
     },
     containerStyle: {
-      margin: 5,
-      marginTop: 10,
+      marginVertical: 10,
       borderColor: "white",
       borderWidth: 1,
       border: "round",
@@ -110,11 +108,11 @@ export function SignIn({ navigation }) {
        />
         <Text style={styles.text}>By tapping Create Account or Sign In, you agree to our Terms. Learn how we process your data in Private Policy and Cookies Policy.</Text>
         
-        <TouchableOpacity onPress={() => signIn()} style={styles.FilledButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.push("CreateAccount")} style={styles.FilledButtonContainer}>
           <Text style={styles.FilledButtonText}>Create Account</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity onPress={() => navigation.push("CreateAccount")} style={styles.ButtonContainer}>
+        <TouchableOpacity onPress={() => signIn()} style={styles.ButtonContainer}>
           <Text style={styles.ButtonText}>Sign In</Text>
         </TouchableOpacity>
 
@@ -142,9 +140,17 @@ export function CreateAccount() {
         resizeMode="contain"
        />
         <Text style={styles.text}>By tapping Create Account or Sign In, you agree to our Terms. Learn how we process your data in Private Policy and Cookies Policy.</Text>
-        <SignInButton title="SIGN IN WITH APPLE" onPress={() => signUp()} />
-        <SignInButton title="SIGN IN WITH FACEBOOK" onPress={() => signUp()} />
-        <SignInButton title="SIGN IN WITH PHONE NUMBER" onPress={() => signUp()} />
+        
+        <TouchableOpacity onPress={() => signUp()} style={styles.ButtonContainer}>
+          <Text style={styles.ButtonText}>SIGN IN WITH APPLE</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => signUp()} style={styles.ButtonContainer}>
+          <Text style={styles.ButtonText}>SIGN IN WITH FACEBOOK</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => signUp()} style={styles.ButtonContainer}>
+          <Text style={styles.ButtonText}>SIGN IN WITH PHONE NUMBER</Text>
+        </TouchableOpacity>
+
         <Text style={styles.text}>Trouble Signing In?</Text>
       </ScreenContainer>
     </ThemeProvider>
