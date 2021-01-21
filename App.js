@@ -11,7 +11,7 @@ import {
   CreateAccount,
   Profile,
   Home,
-  Splash,
+  Loading,
 } from "./src/screens/SignInScreen";
 
 {
