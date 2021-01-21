@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Button, ThemeProvider } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { AuthContext } from "../../context";
@@ -33,12 +33,39 @@ const styles = StyleSheet.create({
   image: {
     height: '11%',
   },
+  ButtonContainer :{
+    borderRadius: 20,
+    padding: 10,
+    width: '80%',
+    alignItems: "center",
+    borderColor: 'white',
+    borderWidth: 1,
+    margin: 5,
+  },
+  ButtonText:{
+    color: "white",
+  },
+  FilledButtonContainer :{
+    borderRadius: 20,
+    padding: 10,
+    width: '80%',
+    alignItems: "center",
+    margin: 5,
+    backgroundColor: "white",
+    marginBottom: 10,
+  },
+  FilledButtonText:{
+    color: "black",
+  },
+
 });
 
 const theme = {
+  colors: {
+    primary: 'white',
+  },
   Button: {
     titleStyle: {
-      color: "black",
       width: "80%",
     },
     containerStyle: {
@@ -48,9 +75,6 @@ const theme = {
       borderWidth: 1,
       border: "round",
     },
-    filled :{
-      color: "white",
-    }
   },
 };
 
@@ -61,15 +85,6 @@ function SignInButton({ title, onPress }) {
     </View>
   );
 }
-
-function FilledButton({ title, onPress }) {
-  return (
-    <View>
-      <Button type="outline" title={title} onPress={onPress} style={theme.filled}  />
-    </View>
-  );
-}
-
 
 const ScreenContainer = ({ children }) => (
   <View style={styles.container}>{children}</View>
@@ -94,11 +109,15 @@ export function SignIn({ navigation }) {
         resizeMode="contain"
        />
         <Text style={styles.text}>By tapping Create Account or Sign In, you agree to our Terms. Learn how we process your data in Private Policy and Cookies Policy.</Text>
-        <FilledButton
-          title="Create Account"
-          onPress={() => navigation.push("CreateAccount")}
-        />
-        <SignInButton title="Sign In" onPress={() => signIn()} />
+        
+        <TouchableOpacity onPress={() => signIn()} style={styles.FilledButtonContainer}>
+          <Text style={styles.FilledButtonText}>Create Account</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity onPress={() => navigation.push("CreateAccount")} style={styles.ButtonContainer}>
+          <Text style={styles.ButtonText}>Sign In</Text>
+        </TouchableOpacity>
+
         <Text style={styles.text}>Trouble Signing In?</Text>
       </ScreenContainer>
       </ThemeProvider>
