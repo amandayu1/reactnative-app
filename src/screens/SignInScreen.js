@@ -31,15 +31,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   image: {
-    width: '80%',
-    height: '14%',
+    height: '11%',
   },
 });
 
 const theme = {
   Button: {
     titleStyle: {
-      color: "white",
+      color: "black",
       width: "80%",
     },
     containerStyle: {
@@ -49,7 +48,9 @@ const theme = {
       borderWidth: 1,
       border: "round",
     },
-
+    filled :{
+      color: "white",
+    }
   },
 };
 
@@ -60,6 +61,15 @@ function SignInButton({ title, onPress }) {
     </View>
   );
 }
+
+function FilledButton({ title, onPress }) {
+  return (
+    <View>
+      <Button type="outline" title={title} onPress={onPress} style={theme.filled}  />
+    </View>
+  );
+}
+
 
 const ScreenContainer = ({ children }) => (
   <View style={styles.container}>{children}</View>
@@ -81,9 +91,10 @@ export function SignIn({ navigation }) {
         <Image
         style={styles.image}
         source={require('../../assets/Icons/name.png')}
+        resizeMode="contain"
        />
         <Text style={styles.text}>By tapping Create Account or Sign In, you agree to our Terms. Learn how we process your data in Private Policy and Cookies Policy.</Text>
-        <SignInButton
+        <FilledButton
           title="Create Account"
           onPress={() => navigation.push("CreateAccount")}
         />
@@ -106,7 +117,11 @@ export function CreateAccount() {
           end={[1, 1]}
           style={styles.background}
         />
-        <Text style={styles.h1}>HungerSwipe</Text>
+        <Image
+        style={styles.image}
+        source={require('../../assets/Icons/name.png')}
+        resizeMode="contain"
+       />
         <Text style={styles.text}>By tapping Create Account or Sign In, you agree to our Terms. Learn how we process your data in Private Policy and Cookies Policy.</Text>
         <SignInButton title="SIGN IN WITH APPLE" onPress={() => signUp()} />
         <SignInButton title="SIGN IN WITH FACEBOOK" onPress={() => signUp()} />
@@ -146,7 +161,11 @@ export const Loading = () => {
           end={[1, 1]}
           style={styles.background}
         />
-        <Text style={styles.text}>HungerSwipe</Text>
+        <Image
+        style={styles.image}
+        source={require('../../assets/Icons/name.png')}
+        resizeMode="contain"
+       />
       </ScreenContainer>
     </ThemeProvider>
   );
