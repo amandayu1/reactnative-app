@@ -6,13 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { AuthContext } from "./context";
 
-import {
-  SignIn,
-  CreateAccount,
-  Profile,
-  Home,
-  Loading,
-} from "./src/screens/SignInScreen";
+import { SignIn, CreateAccount, Profile, Home, PhoneSignIn, Loading} from "./src/screens/SignInScreen";
 
 {
   /* Home Screen*/
@@ -60,6 +54,11 @@ const AuthStackScreen = () => (
       name="SignIn"
       component={SignIn}
       options={{ title: "Sign In" }}
+    />
+    <AuthStack.Screen
+      name="PhoneSignIn"
+      component={PhoneSignIn}
+      options={{ title: "Phone Sign In" }}
     />
   </AuthStack.Navigator>
 );
